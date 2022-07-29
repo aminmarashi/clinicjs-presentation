@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "declaration": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "build",
+        "allowJs": false,
+        "target": "ES2017",
+        "sourceMap": true,
+        "noUnusedLocals": true,
+        "baseUrl": "./",
+        "paths" : {
+          "*": ["node_modules/@types/*", "*"]
+        }
+    },
+    "include": ["lib/**/*"],
+    "exclude": [
+        "node_modules",
+        "coverage",
+        "build",
+        ".git"
+    ]
+}
