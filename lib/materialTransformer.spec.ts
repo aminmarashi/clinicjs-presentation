@@ -1,3 +1,4 @@
+import { describe, it } from '@jest/globals';
 import { transform } from './materialTransformer';
 
 const part = (partName, composition) => ({ partName, composition });
@@ -5,6 +6,11 @@ const composition = (material, percentage) => ({ material, percentage: percentag
 const matchesTransform = (material, expected) => expect(transform(material)).toEqual(expected);
 
 describe('material transformer', () => {
+    describe('Weird material', () => {
+        it('a very weird case to make cpu work', async () => {
+        });
+    });
+
     describe('compositions without part', () => {
         it('should support format: [ number ] [ word ]', () => {
             matchesTransform('100a', [part('', [composition('a', 100)])])
