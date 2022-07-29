@@ -1,15 +1,24 @@
 import { transform } from "./materialTransformer";
 
-const materials = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -/,";
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const numbers = '0123456789';
+const punctuations = ' .!?()[]{}';
+const special = ';:,';
+
+const materials = letters + numbers + punctuations + special;
+const materialsLength = 100;
+const materialsLIst = [];
 
 async function loadTest() {
     console.log('Starting load test...');
-    await ioCpu(generateRandomMaterial(materials, 100), 100, 1000);
-    await cpuOnly(generateRandomMaterial(materials, 100), 100);
-    await memoryOnly(generateRandomMaterial(materials, 100), 100);
-    await memoryAndCpu(generateRandomMaterial(materials, 100), 100);
-    await ioOnly(generateRandomMaterial(materials, 100), 100, 1000);
-    await memoryCpuAndIo(generateRandomMaterial(materials, 100), 100, 1000);
+    const count = 1000;
+    const delay = 1;
+    await ioCpu(generateRandomMaterial(materials, materialsLength), count, delay);
+    await cpuOnly(generateRandomMaterial(materials, materialsLength), count);
+    await memoryOnly(generateRandomMaterial(materials, materialsLength), count);
+    await memoryAndCpu(generateRandomMaterial(materials, materialsLength), count);
+    await ioOnly(generateRandomMaterial(materials, materialsLength), count, delay);
+    await memoryCpuAndIo(generateRandomMaterial(materials, materialsLength), count, delay);
 }
 
 function generateRandomMaterial(chars, len) {
@@ -44,28 +53,25 @@ async function ioOnly(materialGenerator, count, delay) {
 }
 
 async function memoryOnly(materialGenerator, count) {
-    const materials = [];
     for (let i = 0; i < count; i++) {
         try {
-            materials.push(materialGenerator());
+            materialsLIst.push(materialGenerator());
         } catch { }
     }
 }
 
 async function memoryAndCpu(materialGenerator, count) {
-    const materials = [];
     for (let i = 0; i < count; i++) {
         try {
-            materials.push(transform(materialGenerator()));
+            materialsLIst.push(transform(materialGenerator()));
         } catch { }
     }
 }
 
 async function memoryCpuAndIo(materialGenerator, count, delay) {
-    const materials = [];
     for (let i = 0; i < count; i++) {
         try {
-            materials.push(transform(materialGenerator()));
+            materialsLIst.push(transform(materialGenerator()));
         } catch { }
     }
 }

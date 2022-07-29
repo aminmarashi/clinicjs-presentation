@@ -4,13 +4,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "loadTest": "node build/loadTest.js",
+    "loadTest": "tsc; time node build/loadTest.js",
     "doctor": "clinic doctor -- node build/loadTest.js",
-    "predoctor": "rm -rf .clinic",
+    "predoctor": "rm -rf .clinic; tsc",
     "bubbleprof": "clinic bubbleprof -- node build/loadTest.js",
-    "prebubbleprof": "rm -rf .clinic",
+    "prebubbleprof": "rm -rf .clinic; tsc",
     "flame": "clinic flame -- node build/loadTest.js",
-    "preflame": "rm -rf .clinic",
+    "preflame": "rm -rf .clinic; tsc",
     "build": "tsc"
   },
   "repository": "git@github.com:aminmarashi/clinicjs-presentation.git",

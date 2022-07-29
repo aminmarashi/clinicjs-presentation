@@ -10,7 +10,6 @@
         "allowJs": false,
         "target": "ES2017",
         "sourceMap": true,
-        "noUnusedLocals": true,
         "baseUrl": "./"
     },
     "include": ["lib/**/*"],
